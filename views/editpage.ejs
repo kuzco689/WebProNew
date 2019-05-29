@@ -11,18 +11,19 @@
 </head>
 
 <body>
+  <%= blog %>
 
   <div id="bg" >
   <div class="module">
-    <a class="backintern" href="internship.html"><i class="far fa-window-close"></i></a>
+    <a class="backintern" href="/exchange"><i class="far fa-window-close"></i></a>
     <h1 class="foradd">EDIT</h1>
-    <form action="/:id/edit" method="post">
-      <input type="text" value="<%= usertype.university %>" required />
-      <input type="text" value="<%= usertype.country %>" required />
-      <input type="text" value="<%= usertype.levelofstudy %>" required />
-      <input type="Date" value="<%= usertype.date %>" required />
-      <textarea value="<%= usertype.body %>" required></textarea>
-      <input class="formBtn" value="Submit" type="submit" />
+    <form action="/blogs/<%= blog._id %>/edit" method="post">
+      <input type="text" value="<%= blog.university %>" required />
+      <input type="text" value="<%= blog.country %>" required />
+      <input type="text" value="<%= blog.levelofstudy %>" required />
+      <input type="Date" value="<%= blog.date %>" required />
+      <textarea value="<%= blog.body %>" required><%= blog.body %></textarea>
+      <input class="formBtn" type="submit" />
       <!-- <input class="formBtn" value="Reset" type="reset" /> -->
     </form>
   </div>

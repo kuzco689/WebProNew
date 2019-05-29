@@ -76,41 +76,35 @@ router.post('/edit',function(req, res){
 			res.redirect('/profile');
 		}
 	})
-	// const username = req.body.username;
-	// const name = req.body.name;
-	// const faculty = req.body.faculty;
-	// const dep = req.body.dep;
-	// const major = req.body.major;
-	// const email = req.body.email;
+});
+
+router.post('/blogs/:id/edit',function(req, res){
+	// console.log(req.session.passport.user);
+
+	const university = req.body.university;
+	const country = req.body.country;
+	const levelofstudy = req.body.levelofstudy;
+	const date = req.body.date;
+	const body = req.body.body;
 	// const usertype = 0;
-	//
-	//     let newUser = new User({
-	//       username:username,
-	//       name:name,
-	//       faculty:faculty,
-	//       dep:dep,
-	//       major:major,
-	//       email:email,
-	//     });
-	// 		console.log(req.session);
-	// 		let id = req.session.passport.user;
-	//
-	// 		User.findOne({username: username},(err,data)=>{
-	// 			if(err){
-	// 				console.log(err);
-	// 				res.redirect('/');
-	// 			}else{
-	// 				console.log(data);
-	// 			}
-	// 		})
-			// User.findByIdAndUpdate(req.session.passport.user,newUser,(err,update)=>{
-			// 	if(err){
-			// 		console.log(err);
-			// 		res.redirect('/home');
-			// 	}else{
-			// 		res.redirect("/profile");
-			// 	}
-			// });
+
+	let data = {
+			university:university,
+	  	country:country,
+	  	levelofstudy:levelofstudy,
+	    date:date,
+	    body:body
+	}
+
+	User.findByIdAndUpdate(req.session.passport.user,data,(err,data)=>{
+		if(err){
+			console.log(err);
+			res.redirect('/');
+		}else{
+			console.log(data);
+			res.redirect('/blogs/:id');
+		}
+	})
 });
 
 router.use(session({

@@ -129,15 +129,15 @@ app.get("/profile/edit", function(req, res){
   })
 });
 
-app.get("/:id/edit", function(req, res){
-  console.log(req.session);
+app.post("/blogs/:id/edit", function(req, res){
+  // console.log(req.session);
 
-  User.findById( req.session.passport.user,(err,data)=>{
+  Blog.findById(req.params.id,(err,foundBlog)=>{
     if(err){
         res.redirect("/home");
     } else {
-        console.log(data);
-        res.render("editpage", {usertype: data});
+        // console.log(data);
+        res.render("editpage", {blog: foundBlog});
     }
   })
 });
@@ -155,10 +155,6 @@ app.get("/", function(req, res){
 app.get("/home", function(req, res){
    res.render("home");
 });
-
-// app.get("/exchange", function(req, res){
-//    res.render("exchange");
-// });
 
 app.get("/internship", function(req, res){
 });
@@ -252,27 +248,24 @@ app.get("/blogs/:id", function(req, res){
      res.render("show", {usertype: null , blog: blogs});
     })
   }
-   // Blog.findById(req.params.id, function(err, foundBlog){
-   //     if(err){
-   //         res.redirect("/blogs");
-   //     } else {
-   //         res.render("show", {blog: foundBlog});
-   //     }
-   // })
 });
 
-// app.get("/exchange", function(req, res){
-//    Blog.find({}, function(err, blogs){
-//        if(err){
-//            console.log("ERROR!");
-//        } else {
-//           res.render("exchange", {blogs: blogs});
-//        }
-//    });
-// });
+// DELETE ROUTE
+app.delete("/blogs/:id", function(req, res){
+   //destroy blog
+   Blog.findByIdAndRemove(req.params.id, function(err){
+       if(err){
+           res.redirect("/home");
+       } else {
+           res.redirect("/home");
+       }
+   })
+   //redirect somewhere
+});
+
+
 
 app.get("/exchange", function(req, res){
-  // console.log(req.session.passport.user);
   if(req.isAuthenticated()){
     User.findById(req.session.passport.user, function(err, usertype){
         if(err){
