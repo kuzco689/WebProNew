@@ -1,3 +1,38 @@
+@import "https://fonts.googleapis.com/css?family=Raleway";
+
+body {
+  color:#6a6f8c;
+  font:600 16px/18px;
+  display: block;
+  font-family: 'Kanit', sans-serif;
+  background-color: #f2f4f5;
+
+}
+
+* { box-sizing: border-box; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+*:focus {
+  outline: 0
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none}
+
+p {
+  font-family: 'Mitr', sans-serif;
+  color: #777777;
+  font-size: 12px;
+  line-height: 2;
+  font-weight: 400; }
+p a{
+    color: #777777;
+}
+
 div {
   display: block;
 }
@@ -37,28 +72,332 @@ button.btnsignin{
   margin-right: 20px;
 }
 
+button.btn{
+  position: relative;
+  margin-right: 20px;
+}
 
-body {
-  display: block;
-  font-family: 'Kanit', sans-serif;
-  font-size: 18px;
-  background-color: #f2f4f5;
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 15px;
+  line-height: 1.428571429;
+  border-radius: 25px;
+}
+
+/*home*/
+
+
+/*sign-in sign-up*/
+.login-wrap{
+  width:100%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  max-width:525px;
+  min-height:900px;
+  position:relative;
+  background: darkgreen;
+}
+
+.login-wrap{
+  width:100%;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  max-width:525px;
+  min-height:850px;
+  position:relative;
+  background: darkgreen;
+}
+
+.login-html{
+  width:100%;
+  height:100%;
+  position:absolute;
+  padding:25px 50px 25px 50px;
+  background:rgba(40,57,101,.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin-top: 20px;
+  position:absolute;
+  transform:rotateY(180deg);
+  backface-visibility:hidden;
+  transition:all .4s linear;
+}
+
+.login-html .sign-in-htm{
+  margin-top: 50px;
+}
+
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+  display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+  text-transform:uppercase;
+}
+.login-html .tab{
+  font-size:22px;
+  margin-right:15px;
+  padding-bottom:5px;
+  margin:0 15px 10px 0;
+  display:inline-block;
+  border-bottom:3px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+  color:#fff;
+  border-color:#1161ee;
+}
+.login-form{
+  min-height:300px;
+  position:relative;
+  perspective:1000px;
+  transform-style:preserve-3d;
+}
+.login-form .group{
+  margin-bottom:15px;
+}
+
+.login-form .group .check+label{
+  margin-top: 30px;
+}
+
+.login-html .sign-in-htm .group .label,
+.login-form .sign-in-htm .group .input{
+  margin-top: 10px;
 
 }
 
-* {
-  margin: 0;
-  padding: 0; }
+.login-form .group .label,
+.login-form .group .input{
+  position: relative;
+  width:70%;
+  color:#fff;
+  display:block;
+  margin: auto;
+}
 
-p {
-  font-family: 'Mitr', sans-serif;
-  color: #777777;
-  font-size: 12px;
-  line-height: 2;
-  font-weight: 400; }
-  p a{
-    color: #777777;
-  }
+.login-form .group .label{
+  position: relative;
+  color:#aaa;
+  font-size:14px;
+}
+.login-form .sign-up-htm .group .input{
+  position: relative;
+  border:none;
+  padding:6px 15px;
+  border-radius:25px;
+  background:rgba(255,255,255,.1);
+}
+
+.login-form .sign-in-htm .group .input{
+  position: relative;
+  border:none;
+  padding:10px 20px;
+  border-radius:25px;
+  background:rgba(255,255,255,.1);
+}
+
+.login-form .group input[data-type="password"]{
+  text-security:circle;
+  -webkit-text-security:circle;
+}
+
+.login-form .group .button{
+  background:#1161ee;
+  font-size: 18px;
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width:30%;
+  color:#fff;
+  display:block;
+  position: relative;
+  border:none;
+  padding:10px 15px;
+  border-radius:27px;
+}
+.login-form .group label .icon{
+  width:15px;
+  height:15px;
+  border-radius:2px;
+  position:relative;
+  display:inline-block;
+  background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+  content:'';
+  width:10px;
+  height:2px;
+  background:#fff;
+  position:absolute;
+  transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+  left:3px;
+  width:5px;
+  bottom:6px;
+  transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+  top:6px;
+  right:0;
+  transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+  color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+  background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+  transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+  transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+  transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+  transform:rotate(0);
+}
+
+.login-html .sign-up-htm .hr{
+  height:2px;
+  margin:30px 0 20px 0;
+  background:rgba(255,255,255,.2);
+}
+
+.login-html .sign-in-htm .hr{
+  height:2px;
+  margin:40px 0 40px 0;
+  background:rgba(255,255,255,.2);
+}
+
+.foot-lnk{
+  text-align:center;
+}
+.foot-welcome{
+  text-align:center;
+  font-size: 5em;
+  margin-top: 40px;
+  color: white;
+}
+
+
+/*หน้าMy Profile*/
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+.profile-img{
+    text-align: center;
+}
+.profile-img img{
+    width: 190px;
+    height: 190px;
+}
+.profile-img .file {
+    position: relative;
+    overflow: hidden;
+    margin-top: -24%;
+    width: 70%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    background: #212529b8;
+}
+.profile-img .file input {
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+.profile-head h5{
+    margin-top: 5%;
+    font-size: 30px;
+    color: #333;
+}
+.profile-head h6{
+    color: #0062cc;
+}
+.profile-edit-btn{
+    border: none;
+    border-radius: 1.5rem;
+    width: 70%;
+    padding: 2%;
+    font-weight: 600;
+    color: #6c757d;
+    cursor: pointer;
+}
+.proile-rating{
+    font-size: 12px;
+    color: #818182;
+    margin-top: 5%;
+}
+.proile-rating span{
+    color: #495057;
+    font-size: 15px;
+    font-weight: 600;
+}
+.profile-head .nav-tabs{
+    margin-top: 10%;
+    margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+    font-weight:600;
+    border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+    border: none;
+    border-bottom:2px solid #0062cc;
+}
+.profile-work{
+    padding: 14%;
+    margin-top: -15%;
+}
+.profile-work p{
+    font-size: 1.1em;
+    color: #818182;
+    font-weight: 600;
+    margin-top: 10%;
+}
+.profile-work a{
+    text-decoration: none;
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+.profile-work ul{
+    list-style: none;
+}
+.profile-tab label{
+    font-weight: 600;
+}
+.profile-tab p{
+    font-weight: 600;
+    font-size: 14px;
+    color: #0062cc;
+}
+
+
 
 /*หน้าAbout*/
 .emp-about{
@@ -334,9 +673,6 @@ div.verdicts p{
   padding-left: 15px;
 }
 
-
-
-
 .post-picture{
   position: relative;
   z-index: 0;
@@ -349,6 +685,8 @@ div.verdicts p{
 
 .post-picture img {
   width: 100%; }
+
+
 
 /*ปุ่ม fav*/
 label input[type="checkbox"] {
@@ -399,4 +737,89 @@ label input[type="checkbox"] {
 .header .newpost {
   color: gray;
   text-align: right;
+}
+
+
+/*หน้าAdd*/
+.backintern{
+  position: relative;
+  left:20.4em;
+  font-size: 1.5em;
+}
+
+h1.foradd{ 
+  color: #2C0D35;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 2em;
+  padding-top: 30px;
+}
+
+#bg{
+  position:relative;
+  top:20px;
+  height:880px;
+  width:880px;
+  background:url('https://i.imgur.com/3eP9Z4O.png') center no-repeat;
+  background-size:cover;
+  margin-left:auto;
+  margin-right:auto; 
+  border:#fff 20px solid;
+}
+
+.module{
+  position:relative;
+  top:15%;    
+  height:70%;
+  width:500px;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius:5px;
+  background:RGBA(255,255,255,1);
+  border:#2C0D35 12px solid;
+    
+  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
+  box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
+  
+}
+
+
+#addForm{
+  float:left;
+  height:86%;
+  width:100%;
+  box-sizing:border-box;
+  padding:40px;
+}
+
+
+
+input, textarea { 
+  margin: 1em auto;
+  font-family: inherit; 
+  text-transform: inherit; 
+  font-size: inherit;
+  
+  display: block; 
+  width: 280px; 
+  padding: .5em;
+}
+textarea { height: 80px; resize: none; }
+
+.formBtn{
+  width:120px;
+  display: inline-block;
+  background: #2C0D35;
+  color: #fff;
+  font-weight: 100;
+  font-size: 1.2em;
+  border: none;
+  height: 50px;
+}
+#add{
+  margin-left: 100px;
+}
+
+#re{
+  margin-left: 55px;
 }
