@@ -78,35 +78,6 @@ router.post('/edit',function(req, res){
 	})
 });
 
-router.post('/blogs/:id/edit',function(req, res){
-	// console.log(req.session.passport.user);
-
-	const university = req.body.university;
-	const country = req.body.country;
-	const levelofstudy = req.body.levelofstudy;
-	const date = req.body.date;
-	const body = req.body.body;
-	// const usertype = 0;
-
-	let data = {
-			university:university,
-	  	country:country,
-	  	levelofstudy:levelofstudy,
-	    date:date,
-	    body:body
-	}
-
-	User.findByIdAndUpdate(req.session.passport.user,data,(err,data)=>{
-		if(err){
-			console.log(err);
-			res.redirect('/');
-		}else{
-			console.log(data);
-			res.redirect('/blogs/:id');
-		}
-	})
-});
-
 router.use(session({
   secret: 'keyboard cat',
   resave: true,
@@ -130,16 +101,5 @@ router.get('/logout', function(req, res){
   req.logout();
   res.redirect('/home');
 });
-
-
-// router.get("/exchange", function(req, res){
-//    User.findById(req.session.passport.user, function(err, usertype){
-//        if(err){
-//            res.redirect("/home");
-//        } else {
-//            res.render("exchange", {usertype: usertype});
-//        }
-//    })
-// });
 
 module.exports = router;

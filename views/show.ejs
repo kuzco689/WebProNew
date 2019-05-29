@@ -78,7 +78,7 @@
 <!-- ************************************************************************************************  -->
 
 <div class="ui main text container segment">
-    <div class="ui huge header">University of <%= blog.university %>, <%=blog.country%></div>
+    <div class="ui huge header"><strong><%=blog.university%>, <%=blog.country%></strong></div>
     <div class="ui top attached ">
         <div class="item">
             <div class="content">
@@ -90,15 +90,13 @@
             </div>
 						<% if(usertype != null){
 							if(usertype.usertype === '1') { %>
-            <a class="ui orange basic button" href="/blogs/<%= blog._id %>/edit">Edit</a>
+            <a class="btn btn-info editbtn" href="/blogs/<%= blog._id %>/edit">Edit</a>
 
 						<form id="delete" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
                 <button class="ui red basic button">Delete</button>
             </form>
 						<% }
 				} %>
-
-
         </div>
     </div>
 </div>

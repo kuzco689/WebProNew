@@ -4,25 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Form</title>
-  <link rel="stylesheet" href="addpage.css">
+  <link rel="stylesheet" href="styleProj.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
 
 </head>
 
 <body>
-  <%= blog %>
+  <% blog %>
 
   <div id="bg" >
   <div class="module">
     <a class="backintern" href="/exchange"><i class="far fa-window-close"></i></a>
     <h1 class="foradd">EDIT</h1>
     <form action="/blogs/<%= blog._id %>/edit" method="post">
-      <input type="text" value="<%= blog.university %>" required />
-      <input type="text" value="<%= blog.country %>" required />
-      <input type="text" value="<%= blog.levelofstudy %>" required />
-      <input type="Date" value="<%= blog.date %>" required />
-      <textarea value="<%= blog.body %>" required><%= blog.body %></textarea>
+      <input name="university" type="text" value="<%= blog.university %>" required />
+      <input name="country" type="text" value="<%= blog.country %>" required />
+      <input name="levelofstudy" type="text" value="<%= blog.levelofstudy %>" required />
+      <input name="date" type="Date" value="<%= blog.date %>" required />
+      <textarea name="body" value="<%= blog.body %>" required><%= blog.body %></textarea>
       <input class="formBtn" type="submit" />
       <!-- <input class="formBtn" value="Reset" type="reset" /> -->
     </form>

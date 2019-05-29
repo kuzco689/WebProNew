@@ -31,6 +31,17 @@ let blogSchema = new mongoose.Schema({
     created: {type: Date, default: Date.now}
 });
 let Blog = mongoose.model("Blog", blogSchema);
+
+let clubSchema = new mongoose.Schema({
+    title: String,
+    date: String,
+    body: String,
+    place: String,
+    time: String,
+    created: {type: Date, default: Date.now}
+});
+let Club = mongoose.model("Club", clubSchema);
+
 // Check connection
 db.once('open', function(){
   console.log('Connected to MongoDB');
@@ -67,43 +78,49 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+// app.get("/short", function(req, res){
+//   // console.log(req.session);
+//   if(req.isAuthenticated()){
+//     User.findById(req.session.passport.user, function(err, usertype){
+//         if(err){
+//             res.redirect("/home");
+//         } else {
+//             res.render("short", {usertype: usertype, user: true});
+//         }
+//     });
+//   }else {
+//     res.render("short", {usertype: null, user: false});
+//   }
+// });
 
-app.get("/internship", function(req, res){
-  // console.log(req.session);
+// app.get("/clubregist", function(req, res){
+//   // console.log(req.session);
+//    User.findById(req.session.passport.user, function(err, usertype){
+//        if(err){
+//            res.redirect("/home");
+//        } else {
+//            res.render("clubregist", {usertype: usertype, user: true});
+//        }
+//    })
+// });
+app.get("/clubregist", function(req, res){
   if(req.isAuthenticated()){
     User.findById(req.session.passport.user, function(err, usertype){
         if(err){
             res.redirect("/home");
         } else {
-            res.render("internship", {usertype: usertype, user: true});
+           Club.findById(req.club, function(err, blogs){
+            res.render("clubregist", {usertype: usertype , club: club, user: true});
+           })
         }
     });
-  }else {
-    res.render("internship", {usertype: null, user: false});
+  }else{
+    Club.findById(req.club, function(err, blogs){
+     res.render("clubregist", {usertype: null , club: club, user: false});
+    })
   }
 });
 
-app.get("/short", function(req, res){
-  // console.log(req.session);
-   User.findById(req.session.passport.user, function(err, usertype){
-       if(err){
-           res.redirect("/home");
-       } else {
-           res.render("short", {usertype: usertype});
-       }
-   })
-});
-
-app.get("/clubregist", function(req, res){
-  // console.log(req.session);
-   User.findById(req.session.passport.user, function(err, usertype){
-       if(err){
-           res.redirect("/home");
-       } else {
-           res.render("clubregist", {usertype: usertype});
-       }
-   })
-});
 
 app.get("/newpost", function(req, res){
   // console.log(req.session);
@@ -129,7 +146,7 @@ app.get("/profile/edit", function(req, res){
   })
 });
 
-app.post("/blogs/:id/edit", function(req, res){
+app.get("/blogs/:id/edit", function(req, res){
   // console.log(req.session);
 
   Blog.findById(req.params.id,(err,foundBlog)=>{
@@ -156,20 +173,14 @@ app.get("/home", function(req, res){
    res.render("home");
 });
 
-app.get("/internship", function(req, res){
-});
-
-app.get("/short", function(req, res){
-   res.render("short");
-});
 
 app.get("/aboutclub", function(req, res){
    res.render("aboutclub");
 });
 
-app.get("/clubregist", function(req, res){
-   res.render("clubregist");
-});
+// app.get("/clubregist", function(req, res){
+//    res.render("clubregist");
+// });
 
 app.get("/contact", function(req, res){
    res.render("contact");
@@ -199,13 +210,26 @@ app.get("/addpage", function(req, res){
 let users = require('./routes/users');
 app.use('/users',users);
 
-// Start Server
-app.listen(3000, function(){
-  console.log('Server started on port 3000...');
+
+app.get("/exchange", function(req, res){
+  if(req.isAuthenticated()){
+    User.findById(req.session.passport.user, function(err, usertype){
+        if(err){
+            res.redirect("/home");
+        } else {
+           Blog.find({type: "exchange"}, function(err, blogs){
+            res.render("exchange", {usertype: usertype , blogs: blogs, user: true});
+           })
+        }
+    });
+  }else{
+    Blog.find({type: "exchange"}, function(err, blogs){
+     res.render("exchange", {usertype: null , blogs: blogs, user: false});
+    })
+  }
 });
 
-// CREATE ROUTE
-app.post("/exchange", function(req, res){
+app.post("/addpage", function(req, res){
     // create blog
     console.log(req.body);
     console.log("===========")
@@ -217,7 +241,7 @@ app.post("/exchange", function(req, res){
       levelofstudy: req.body.levelstd,
       date: req.body.datedl,
       body: req.body.desc,
-      type: 'exchange'
+      type: req.body.type
     }
 
     Blog.create(data, function(err, newBlog){
@@ -225,10 +249,48 @@ app.post("/exchange", function(req, res){
             res.render("addpage");
         } else {
             //then, redirect to the index
-            res.redirect("/exchange");
+            res.redirect("/home");
         }
     });
 });
+
+app.get("/internship", function(req, res){
+  if(req.isAuthenticated()){
+    User.findById(req.session.passport.user, function(err, usertype){
+        if(err){
+            res.redirect("/home");
+        } else {
+           Blog.find({type: "internship"}, function(err, blogs){
+            res.render("internship", {usertype: usertype , blogs: blogs, user: true});
+           })
+        }
+    });
+  }else{
+    Blog.find({type: "internship"}, function(err, blogs){
+     res.render("internship", {usertype: null , blogs: blogs, user: false});
+    })
+  }
+});
+
+
+app.get("/short", function(req, res){
+  if(req.isAuthenticated()){
+    User.findById(req.session.passport.user, function(err, usertype){
+        if(err){
+            res.redirect("/home");
+        } else {
+           Blog.find({type: "short"}, function(err, blogs){
+            res.render("short", {usertype: usertype , blogs: blogs, user: true});
+           })
+        }
+    });
+  }else{
+    Blog.find({type: "short"}, function(err, blogs){
+     res.render("short", {usertype: null , blogs: blogs, user: false});
+    })
+  }
+});
+
 
 // SHOW ROUTE
 app.get("/blogs/:id", function(req, res){
@@ -263,23 +325,37 @@ app.delete("/blogs/:id", function(req, res){
    //redirect somewhere
 });
 
+app.post('/blogs/:id/edit',function(req, res){
+	// console.log(req.session.passport.user);
+  let id = req.params.id;
+	const university = req.body.university;
+	const country = req.body.country;
+	const levelofstudy = req.body.levelofstudy;
+	const date = req.body.date;
+	const body = req.body.body;
+	// const usertype = 0;
+
+	let data = {
+			university:university,
+	  	country:country,
+	  	levelofstudy:levelofstudy,
+	    date:date,
+	    body:body
+	}
+
+	Blog.findByIdAndUpdate(id,data,(err,data)=>{
+		if(err){
+			console.log(err);
+			res.redirect('/');
+		}else{
+			console.log(data);
+			res.redirect('/blogs/'+id);
+		}
+	})
+});
 
 
-app.get("/exchange", function(req, res){
-  if(req.isAuthenticated()){
-    User.findById(req.session.passport.user, function(err, usertype){
-        if(err){
-            res.redirect("/home");
-        } else {
-           Blog.find({type: "exchange"}, function(err, blogs){
-            res.render("exchange", {usertype: usertype , blogs: blogs});
-           })
-        }
-    });
-  }else{
-    Blog.find({}, function(err, blogs){
-     res.render("exchange", {usertype: null , blogs: blogs});
-    })
-  }
-
+// Start Server
+app.listen(3000, function(){
+  console.log('Server started on port 3000...');
 });

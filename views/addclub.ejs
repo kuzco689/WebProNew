@@ -16,17 +16,12 @@
   <div class="module">
     <a class="backintern" href="/"><i class="far fa-window-close"></i></a>
     <h1 class="foradd">ADD</h1>
-    <form class="addform" action="../addpage" method="post">
-      <input placeholder="University" name="university" type="text" required />
-      <input placeholder="Country" name="country" type="text" required />
-      <input placeholder="Level of study" name="levelstd" type="text" required />
-      <input placeholder="Date of Deadline" name="datedl" type="Date" required />
-      <select name="type">
-        <option value="exchange">Exchange</option>
-        <option value="internship">Internship</option>
-        <option value="short">Short-program</option>
-      </select>
-      <textarea placeholder="Description" name="desc" required></textarea>
+    <form class="addform" action="../addclub" method="post">
+      <input placeholder="Title" name="title" type="text" required />
+      <input placeholder="Date" name="date" type="Date" required />
+      <textarea placeholder="Description" name="body" required></textarea>
+      <input placeholder="Place" name="place" type="text" required />
+      <input placeholder="Time" name="time" type="text" required />
       <input class="formBtn" value="Add" type="submit" />
       <input class="formBtn" value="Reset" type="reset" />
     </form>

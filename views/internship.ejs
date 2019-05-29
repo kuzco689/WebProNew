@@ -15,6 +15,7 @@
 <body>
 	<% usertype %>
 	<% user %>
+
 <!--nav bar-->
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c2e3d;">
 	  <a class="navbar-brand" href="/">IA FSci</a>
@@ -80,80 +81,32 @@
 		<h1>Internship Program</h1>
 		<% if(usertype != null){
 			if(usertype.usertype === '1') { %>
-				<a class="newpost" href="#"><i class="fas fa-plus-circle"></i></a>
+				<a class="newpost" href="/addpage"><i class="fas fa-plus-circle"></i></a>
 				<% }
 		} %>
-
 	</div>
 	<ul>
+		<% blogs.forEach(function(blog){ %>
 		<li class="box-list single-blog-post">
-			<div class="post-picture">
-		        <img src="img/bg-img/21.jpg" alt="">
-		    </div>
 			<div class="verdicts">
-				<p><a href="#"><strong>Is we miles ready he might going</strong></a><br/>
-				Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all.</p>
+				<p><a href="/blogs/<%= blog._id %>"><strong><%=blog.university%> , <%=blog.country%></strong></a><br/>
+					<%=blog.levelofstudy%> , <%=blog.date%><br/>
+				<%=blog.body%></p>
 			</div>
 			<div>
-				<a class="btn btn-info editbtn" href="#">Edit</a>
+				<% if(usertype != null){
+					if(usertype.usertype === '1') { %>
+				<a class="btn btn-info editbtn" href="/blogs/<%= blog._id %>/edit">Edit</a>
+				<% }
+		} %>
 			</div>
-			<label for="id-of-input1" class="custom-checkbox">
+			<!-- <label for="<% blog._id %>" class="custom-checkbox">
 			  <input type="checkbox" id="id-of-input1"/>
 			  <i class="far fa-star"></i>
 			  <i class="fas fa-star"></i>
-			</label>
+			</label> -->
 		</li>
-		<li class="box-list single-blog-post">
-			<div class="post-picture">
-		        <img src="img/bg-img/34.jpg" alt="">
-		    </div>
-			<div class="verdicts">
-				<p><a href="#"><strong>On projection apartments unsatiable so if he entreaties appearance</strong></a><br/>
-				Stronger unpacked felicity to of mistaken. Fanny at wrong table ye in. Be on easily cannot innate in lasted months on. Differed and and felicity steepest mrs age outweigh. Opinions learning likewise daughter now age outweigh. Raptures stanhill my greatest mistaken or exercise he on although. Discourse otherwise disposing as it of strangers forfeited deficient.</p>
-			</div>
-			<div>
-				<a class="btn btn-info editbtn" href="#">Edit</a>
-			</div>
-			<label for="id-of-input2" class="custom-checkbox">
-			  <input type="checkbox" id="id-of-input2"/>
-			  <i class="far fa-star"></i>
-			  <i class="fas fa-star"></i>
-			</label>
-		</li>
-		<li class="box-list single-blog-post">
-			<div class="post-picture">
-		        <img src="img/bg-img/54.jpg" alt="">
-		    </div>
-			<div class="verdicts">
-				<p><a href="#"><strong>Guest it he tears aware as</strong></a><br/>
-				Of resolve to gravity thought my prepare chamber so. Unsatiable entreaties collecting may sympathize nay interested instrument. If continue building numerous of at relation in margaret. Lasted engage roused mother an am at. Other early while if by do to. Missed living excuse as be. Cause heard fat above first shall for. My smiling to he removal weather on anxious.</p>
-			</div>
-			<div>
-				<a class="btn btn-info editbtn" href="#">Edit</a>
-			</div>
-			<label for="id-of-input3" class="custom-checkbox">
-			  <input type="checkbox" id="id-of-input3"/>
-			  <i class="far fa-star"></i>
-			  <i class="fas fa-star"></i>
-			</label>
-		</li>
-		<li class="box-list single-blog-post">
-			<div class="post-picture">
-		        <img src="img/bg-img/23.jpg" alt="">
-		    </div>
-			<div class="verdicts">
-				<p><a href="#"><strong>Greatly hearted has who believe</strong></a><br/>
-				Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection.</p>
-			</div>
-			<div>
-				<a class="btn btn-info editbtn" href="#">Edit</a>
-			</div>
-			<label for="id-of-input4" class="custom-checkbox">
-			  <input type="checkbox" id="id-of-input4"/>
-			  <i class="far fa-star"></i>
-			  <i class="fas fa-star"></i>
-			</label>
-		</li>
+		<% }) %>
 	</ul>
 </div>
 

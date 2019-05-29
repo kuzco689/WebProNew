@@ -794,7 +794,7 @@ h1.foradd{
 
 
 
-input, textarea { 
+input, textarea, select { 
   margin: 1em auto;
   font-family: inherit; 
   text-transform: inherit; 
