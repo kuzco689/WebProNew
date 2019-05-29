@@ -1,0 +1,33 @@
+
+====Sever=====
+app.get("/Profile", function(req, res){
+    
+    User.find({},function(err, allCampgrounds){
+        if(err){
+            console.log(err);
+        } else {
+            console.log(req);
+            res.render("profile", {User:allCampgrounds, currentUser: req.user});
+        }
+    });
+});
+===============
+
+
+=======navbar=========
+	<% if(!currentUser){ %>
+      		<li class="nav-item" id="SignUpBut">
+                    <a class="nav-link" href="SignUp">Sign up</a>
+                </li>
+		<li class="nav-item" id="SignInBut">
+                    <a class="nav-link" href="SignIn">Sign in</a>
+                </li>
+	<% } else { %>
+        	<li>
+        		<a href="#"> Singed In As </a>
+        	</li>
+        	<li class="nav-item" id="SignOutBut">
+                    	<a class="nav-link" href="/logout">Sign out</a>
+                </li>
+	<% } %>
+========================

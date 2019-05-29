@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Exchange</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+  	<link rel="stylesheet" href="styleProj.css">
+  	<link href="https://fonts.googleapis.com/css?family=Kanit|Mitr" rel="stylesheet">
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+</head>
+<body>
+	<% usertype %>
+	<% let user = true %>
+
+<!--nav bar-->
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c2e3d;">
+	  <a class="navbar-brand" href="/">IA FSci</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        Program
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="exchange">Exchange</a>
+	          <a class="dropdown-item" href="internship">Internship</a>
+	          <a class="dropdown-item" href="short">Short-program</a>
+	        </div>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        Club
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="aboutclub">About Club</a>
+	          <a class="dropdown-item" href="clubregist">Register</a>
+	        </div>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	        About Us
+	        </a>
+	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+	          <a class="dropdown-item" href="contact">Contact</a>
+	          <a class="dropdown-item" href="aboutus">About Us</a>
+	        </div>
+	      </li>
+	      </ul>
+	      <ul class="navbar-nav">
+	      <li class="nav-item dropdown ">
+		    <%if(usertype != null) { %>
+	      	<div class="dropdown profile">
+                <button class="btn btn-primary btn-circle" type="button" id="profiledropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-alt"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profiledropdownmenu" >
+                    <a class="dropdown-item" href="profile">My Profile</a>
+                    <a class="dropdown-item" href="/users/logout">Log Out</a>
+                </div> <% } else { %>
+		      <form class="form-inline">
+			    <button class="btn btn-outline-success btnsignin" type="button" onclick="window.location.href='signin'">Sign In</button>
+			  </form> <% } %>
+		  </li>
+	    </ul>
+	  </div>
+	</nav>
+<!-- ************************************************************************************************  -->
+
+<div class="container">
+	<div class="header">
+		<h1>Exchange Program</h1>
+		<% if(usertype != null){
+			if(usertype.usertype === '1') { %>
+				<a class="newpost" href="/addpage"><i class="fas fa-plus-circle"></i></a>
+				<% }
+		} %>
+	</div>
+	<ul>
+
+		<% blogs.forEach(function(blog){ %>
+		<li class="box-list single-blog-post">
+			<div class="post-picture">
+		        <!-- <img src="img/bg-img/21.jpg" alt=""> -->
+		    </div>
+			<div class="verdicts">
+				<p><a href="/blogs/<%= blog._id %>"><strong><%=blog.university%> , <%=blog.country%></strong></a><br/>
+					<%=blog.levelofstudy%> , <%=blog.date%><br/>
+				<%=blog.body%></p>
+			</div>
+			<div>
+				<% if(usertype != null){
+					if(usertype.usertype === '1') { %>
+				<a class="btn btn-info editbtn" href="/<%= blog._id %>/edit">Edit</a>
+				<% }
+		} %>
+			</div>
+			<label for="id-of-input1" class="custom-checkbox">
+			  <input type="checkbox" id="id-of-input1"/>
+			  <i class="far fa-star"></i>
+			  <i class="fas fa-star"></i>
+			</label>
+		</li>
+		<% }) %>
+
+		<li class="box-list single-blog-post">
+			<div class="post-picture">
+		        <img src="img/bg-img/34.jpg" alt="">
+		    </div>
+			<div class="verdicts">
+				<p><a href="#"><strong>On projection apartments unsatiable so if he entreaties appearance</strong></a><br/>
+				Stronger unpacked felicity to of mistaken. Fanny at wrong table ye in. Be on easily cannot innate in lasted months on. Differed and and felicity steepest mrs age outweigh. Opinions learning likewise daughter now age outweigh. Raptures stanhill my greatest mistaken or exercise he on although. Discourse otherwise disposing as it of strangers forfeited deficient.</p>
+			</div>
+			<div>
+				<a class="btn btn-info editbtn" href="#">Edit</a>
+			</div>
+			<label for="id-of-input2" class="custom-checkbox">
+			  <input type="checkbox" id="id-of-input2"/>
+			  <i class="far fa-star"></i>
+			  <i class="fas fa-star"></i>
+			</label>
+		</li>
+		<li class="box-list single-blog-post">
+			<div class="post-picture">
+		        <img src="img/bg-img/54.jpg" alt="">
+		    </div>
+			<div class="verdicts">
+				<p><a href="#"><strong>Guest it he tears aware as</strong></a><br/>
+				Of resolve to gravity thought my prepare chamber so. Unsatiable entreaties collecting may sympathize nay interested instrument. If continue building numerous of at relation in margaret. Lasted engage roused mother an am at. Other early while if by do to. Missed living excuse as be. Cause heard fat above first shall for. My smiling to he removal weather on anxious.</p>
+			</div>
+			<div>
+				<a class="btn btn-info editbtn" href="#">Edit</a>
+			</div>
+			<label for="id-of-input3" class="custom-checkbox">
+			  <input type="checkbox" id="id-of-input3"/>
+			  <i class="far fa-star"></i>
+			  <i class="fas fa-star"></i>
+			</label>
+		</li>
+		<li class="box-list single-blog-post">
+			<div class="post-picture">
+		        <img src="img/bg-img/23.jpg" alt="">
+		    </div>
+			<div class="verdicts">
+				<p><a href="#"><strong>Greatly hearted has who believe</strong></a><br/>
+				Dispatched entreaties boisterous say why stimulated. Certain forbade picture now prevent carried she get see sitting. Up twenty limits as months. Inhabit so perhaps of in to certain. Sex excuse chatty was seemed warmth. Nay add far few immediate sweetness earnestly dejection.</p>
+			</div>
+			<div>
+				<a class="btn btn-info editbtn" href="#">Edit</a>
+			</div>
+			<label for="id-of-input4" class="custom-checkbox">
+			  <input type="checkbox" id="id-of-input4"/>
+			  <i class="far fa-star"></i>
+			  <i class="fas fa-star"></i>
+			</label>
+		</li>
+	</ul>
+</div>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Form</title>
+  <link rel="stylesheet" href="addpage.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+  <div id="bg" >
+  <div class="module">
+    <a class="backintern" href="internship.html"><i class="far fa-window-close"></i></a>
+    <h1 class="foradd">EDIT</h1>
+    <form action="/:id/edit" method="post">
+      <input type="text" value="<%= usertype.university %>" required />
+      <input type="text" value="<%= usertype.country %>" required />
+      <input type="text" value="<%= usertype.levelofstudy %>" required />
+      <input type="Date" value="<%= usertype.date %>" required />
+      <textarea value="<%= usertype.body %>" required></textarea>
+      <input class="formBtn" value="Submit" type="submit" />
+      <!-- <input class="formBtn" value="Reset" type="reset" /> -->
+    </form>
+  </div>
+</div>
+
+</body>
+
+</html>
