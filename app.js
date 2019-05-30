@@ -77,32 +77,6 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// app.get("/short", function(req, res){
-//   // console.log(req.session);
-//   if(req.isAuthenticated()){
-//     User.findById(req.session.passport.user, function(err, usertype){
-//         if(err){
-//             res.redirect("/home");
-//         } else {
-//             res.render("short", {usertype: usertype, user: true});
-//         }
-//     });
-//   }else {
-//     res.render("short", {usertype: null, user: false});
-//   }
-// });
-
-// app.get("/clubregist", function(req, res){
-//   // console.log(req.session);
-//    User.findById(req.session.passport.user, function(err, usertype){
-//        if(err){
-//            res.redirect("/home");
-//        } else {
-//            res.render("clubregist", {usertype: usertype, user: true});
-//        }
-//    })
-// });
 app.get("/clubregist", function(req, res){
   if(req.isAuthenticated()){
     User.findById(req.session.passport.user, function(err, usertype){
@@ -499,6 +473,8 @@ app.post('/clubregist/:id',function(req, res){
 
 
 // Start Server
-app.listen(3000, function(){
+const portnumber = process.env.PORT || 2525;
+app.listen(portnumber, function(){
+
   console.log('Server started on port 3000...');
 });
