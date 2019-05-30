@@ -109,17 +109,67 @@ app.get("/clubregist", function(req, res){
         if(err){
             res.redirect("/home");
         } else {
-           Club.findById(req.club, function(err, blogs){
+           Club.find({}, function(err, club){ console.log(club);
             res.render("clubregist", {usertype: usertype , club: club, user: true});
            })
         }
     });
   }else{
-    Club.findById(req.club, function(err, blogs){
+    Club.find({}, function(err, club){ console.log(club);
      res.render("clubregist", {usertype: null , club: club, user: false});
     })
   }
 });
+
+app.get("/clubregist/:id", function(req, res){
+  // console.log(req.session);
+  let id = req.params.id;
+  if(req.isAuthenticated()){
+    User.findById(req.session.passport.user, function(err, usertype){
+        if(err){
+            res.redirect("/home");
+        } else {
+           Club.findById(id, function(err, club){ console.log(club);
+            res.render("showclub", {usertype: usertype , club: club, user: true});
+           })
+        }
+    });
+  }else{
+    Club.findById(id, function(err, club){ console.log(club);
+     res.render("showclub", {usertype: null , club: club, user: false});
+    })
+  }
+});
+
+app.get("/addclub", function(req, res){
+  res.render("addclub");
+});
+
+app.post("/addclub", function(req, res){
+    // create blog
+    console.log(req.body);
+    console.log("===========")
+    console.log(req.body);
+
+    let data = {
+      title: req.body.title,
+      date: req.body.date,
+      body: req.body.body,
+      place: req.body.place,
+      time: req.body.time
+    }
+
+    Club.create(data, function(err, newBlog){
+        if(err){
+            res.render("addclub");
+        } else {
+            //then, redirect to the index
+            res.redirect("/home");
+        }
+    });
+});
+
+
 
 
 app.get("/newpost", function(req, res){
@@ -159,6 +209,19 @@ app.get("/blogs/:id/edit", function(req, res){
   })
 });
 
+app.get("/clubregist/:id/edit", function(req, res){
+  // console.log(req.session);
+
+  Club.findById(req.params.id,(err,foundClub)=>{
+    if(err){
+        res.redirect("/home");
+    } else {
+        // console.log(data);
+        res.render("editclub", {club: foundClub});
+    }
+  })
+});
+
 
 app.get('*', function(req, res, next){
   res.locals.user = req.user || null;
@@ -170,7 +233,45 @@ app.get("/", function(req, res){
 });
 
 app.get("/home", function(req, res){
-   res.render("home");
+   // res.render("home");
+   if(req.isAuthenticated()){
+     User.findById(req.session.passport.user, function(err, usertype){
+         if(err){
+             res.redirect("/home");
+         } else {
+           Club.find({},(err,data1)=>{
+             if(err){
+               console.log(err);
+             }else{
+               Blog.find({},(err,data2)=>{
+                 if(err){
+                   console.log(err);
+                 }else{
+                   res.render('home',{club:data1,blogs:data2,usertype:usertype,user:true})
+                 }
+               })
+             }
+           });
+         }
+     });
+   }else{
+     Club.find({},(err,data1)=>{
+       if(err){
+         console.log(err);
+       }else{
+         Blog.find({},(err,data2)=>{
+           if(err){
+             console.log(err);
+           }else{
+             res.render('home',{club:data1,blogs:data2,usertype:null,user:false})
+           }
+         })
+       }
+     });
+   }
+
+
+
 });
 
 
@@ -325,6 +426,18 @@ app.delete("/blogs/:id", function(req, res){
    //redirect somewhere
 });
 
+app.delete("/clubregist/:id", function(req, res){
+   //destroy blog
+   Blog.findByIdAndRemove(req.params.id, function(err){
+       if(err){
+           res.redirect("/home");
+       } else {
+           res.redirect("/home");
+       }
+   })
+   //redirect somewhere
+});
+
 app.post('/blogs/:id/edit',function(req, res){
 	// console.log(req.session.passport.user);
   let id = req.params.id;
@@ -353,6 +466,36 @@ app.post('/blogs/:id/edit',function(req, res){
 		}
 	})
 });
+
+app.post('/clubregist/:id',function(req, res){
+	// console.log(req.session.passport.user);
+  let id = req.params.id;
+	const title = req.body.title;
+	const date = req.body.date;
+	const body = req.body.body;
+	const place = req.body.place;
+	const time = req.body.time;
+	// const usertype = 0;
+
+	let data = {
+			title:title,
+	  	date:date,
+	  	body:body,
+	    place:place,
+	    time:time
+	}
+
+	Club.findByIdAndUpdate(id,data,(err,data)=>{
+		if(err){
+			console.log(err);
+			res.redirect('/');
+		}else{
+			console.log(data);
+			res.redirect('/clubregist/'+id);
+		}
+	})
+});
+
 
 
 // Start Server

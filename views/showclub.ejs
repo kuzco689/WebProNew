@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Club Register</title>
+	<title>Exchange</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,6 +16,7 @@
 	<% usertype %>
 	<% user %>
 	<% club %>
+
 <!--nav bar-->
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c2e3d;">
 	  <a class="navbar-brand" href="/">IA FSci</a>
@@ -32,9 +33,9 @@
 	        Program
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="exchange">Exchange</a>
-	          <a class="dropdown-item" href="internship">Internship</a>
-	          <a class="dropdown-item" href="short">Short-program</a>
+	          <a class="dropdown-item" href="/exchange">Exchange</a>
+	          <a class="dropdown-item" href="/internship">Internship</a>
+	          <a class="dropdown-item" href="/short">Short-program</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown">
@@ -42,8 +43,8 @@
 	        Club
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="aboutclub">About Club</a>
-	          <a class="dropdown-item" href="clubregist">Register</a>
+	          <a class="dropdown-item" href="/aboutclub">About Club</a>
+	          <a class="dropdown-item" href="/clubregist">Register</a>
 	        </div>
 	      </li>
 	      <li class="nav-item dropdown">
@@ -51,20 +52,20 @@
 	        About Us
 	        </a>
 	        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-	          <a class="dropdown-item" href="contact">Contact</a>
-	          <a class="dropdown-item" href="aboutus">About Us</a>
+	          <a class="dropdown-item" href="/contact">Contact</a>
+	          <a class="dropdown-item" href="/aboutus">About Us</a>
 	        </div>
 	      </li>
 	      </ul>
 	      <ul class="navbar-nav">
 	      <li class="nav-item dropdown ">
-		    <%if(user) { %>
+		    <%if(usertype != null) { %>
 	      	<div class="dropdown profile">
                 <button class="btn btn-primary btn-circle" type="button" id="profiledropdownmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user-alt"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profiledropdownmenu" >
-                    <a class="dropdown-item" href="profile">My Profile</a>
+                    <a class="dropdown-item" href="/profile">My Profile</a>
                     <a class="dropdown-item" href="/users/logout">Log Out</a>
                 </div> <% } else { %>
 		      <form class="form-inline">
@@ -76,42 +77,31 @@
 	</nav>
 <!-- ************************************************************************************************  -->
 
-<div class="container">
-	<div class="header">
-		<h1>Register</h1>
-		<% if(usertype != null){
-			if(usertype.usertype === '1') { %>
-				<a class="newpost" href="/addpage"><i class="fas fa-plus-circle"></i></a>
-				<% }
-		} %>
-	</div>
-	<ul>
+<div class="ui main text container segment">
+    <div class="ui huge header"></div>
+    <div class="ui top attached ">
+        <div class="item">
+            <div class="content">
+							<p><strong>Title</strong> : <%=club.title%></p>
+              <p><strong>Description</strong> : <%=club.body%></p>
+              <p><strong>Date</strong> : <%=club.date%></p>
+							<p><strong>Place</strong> :<%=club.place%></p>
+            </div>
+						<% if(usertype != null){
+							if(usertype.usertype === '1') { %>
+            <a class="btn btn-info editbtn" href="/clubregist/<%= club._id %>/edit">Edit</a>
 
-		<% club.forEach(function(club){ %>
-		<li class="box-list single-blog-post">
-			<!-- <div class="post-picture">
-		        <img src="img/bg-img/21.jpg" alt="">
-		    </div> -->
-			<div class="verdicts">
-				<p><a href="/clubregist/<%= club._id %>"><strong><%=club.title%> , <%=club.date%></strong></a><br/>
-					<%=club.body%> , <%=club.place%><br/>
-				<%=club.time%></p>
-			</div>
-			<div>
-				<% if(usertype != null){
-					if(usertype.usertype === '1') { %>
-				<a class="btn btn-info editbtn " id="sube"  href="/clubregist/<%= club._id %>/edit">Edit</a>
-				<% }
-		} %>
-
-			</div>
-		</li>
-		<% }) %>
-
-
-
-	</ul>
+						<form id="delete" action="/clubregist/<%= club._id %>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+						<% }
+				} %>
+        </div>
+    </div>
 </div>
+
+
+
 
 </body>
 </html>

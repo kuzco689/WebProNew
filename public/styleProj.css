@@ -396,6 +396,50 @@ button.btn{
     font-size: 14px;
     color: #0062cc;
 }
+/*หน้าedit profile*/
+.violet{
+  border: none;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+}
+.editprofile{
+  width: 18px;
+  height: 10px;
+  margin-bottom: 30px;
+}
+
+.row {
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 100px;
+}
+
+/*หน้าedit profile*/
+.violet{
+  border: none;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+}
+.editprofile{
+  width: 18px;
+  height: 10px;
+  margin-bottom: 30px;
+}
+
+.row {
+  position: relative;
+  margin-bottom: 10px;
+  margin-right: 100px;
+}
+
 
 
 
@@ -534,7 +578,7 @@ div.container h1{
   z-index: 1;
   padding: 0 15px;
    }
-    
+
 .post-sidebar-area {
   position: relative;
   z-index: 1;
@@ -578,7 +622,7 @@ div.container h1{
  .limit p {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
  }
 
@@ -727,7 +771,8 @@ label input[type="checkbox"] {
 
 .editbtn{
   position: relative;
-  right: 2.5em;
+  margin-right: 50px;
+
 }
 
 .header h1{
@@ -747,7 +792,7 @@ label input[type="checkbox"] {
   font-size: 1.5em;
 }
 
-h1.foradd{ 
+h1.foradd{
   color: #2C0D35;
   margin-top: 20px;
   text-align: center;
@@ -763,13 +808,13 @@ h1.foradd{
   background:url('https://i.imgur.com/3eP9Z4O.png') center no-repeat;
   background-size:cover;
   margin-left:auto;
-  margin-right:auto; 
+  margin-right:auto;
   border:#fff 20px solid;
 }
 
 .module{
   position:relative;
-  top:15%;    
+  top:15%;
   height:70%;
   width:500px;
   margin-left:auto;
@@ -777,10 +822,10 @@ h1.foradd{
   border-radius:5px;
   background:RGBA(255,255,255,1);
   border:#2C0D35 12px solid;
-    
-  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);        
+
+  -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
   box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
-  
+
 }
 
 
@@ -794,14 +839,14 @@ h1.foradd{
 
 
 
-input, textarea, select { 
+input, textarea, select {
   margin: 1em auto;
-  font-family: inherit; 
-  text-transform: inherit; 
+  font-family: inherit;
+  text-transform: inherit;
   font-size: inherit;
-  
-  display: block; 
-  width: 280px; 
+
+  display: block;
+  width: 280px;
   padding: .5em;
 }
 textarea { height: 80px; resize: none; }
@@ -817,9 +862,13 @@ textarea { height: 80px; resize: none; }
   height: 50px;
 }
 #add{
-  margin-left: 100px;
+  margin-left: 90px;
 }
 
 #re{
   margin-left: 55px;
+}
+
+#sube{
+  margin-left: 180px;
 }

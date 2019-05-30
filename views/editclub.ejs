@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Form</title>
+  <link rel="stylesheet" href="/styleProj.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+  <% club %>
+
+  <div id="bg" >
+  <div class="module">
+    <a class="backintern" href="/"><i class="far fa-window-close"></i></a>
+    <h1 class="foradd">EDIT</h1>
+    <form action="/clubregist/<%= club._id %>" method="post">
+      <input name="title" type="text" value="<%= club.title %>" required />
+      <input name="date" type="date" value="<%= club.date %>" required />
+      <input name="time" type="text" value="<%= club.time %>" required />
+      <input name="place" type="text" value="<%= club.place %>" required />
+      <textarea name="body" value="<%= club.body %>" required><%= club.body %></textarea>
+      <input class="formBtn" type="submit" />
+      <!-- <input class="formBtn" value="Reset" type="reset" /> -->
+    </form>
+  </div>
+</div>
+
+</body>
+
+</html>
