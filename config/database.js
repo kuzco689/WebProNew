@@ -1,4 +1,4 @@
 module.exports = {
-  database:'mongodb://localhost:27017/ipa_fsci',
+  database:'mongodb+srv://kuzco689:1234@cluster0-e8x42.mongodb.net/ipa_fsci?retryWrites=true&w=majority',
   secret: 'yoursecret'
 }
