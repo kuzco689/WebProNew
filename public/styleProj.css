@@ -512,6 +512,14 @@ div.container h1{
   .single-blog-post .post-content {
     padding-left: 15px;
     margin-top: -5px; }
+    /* .single-blog-post p{
+      font-size: 13px;
+      line-height: 1.5em;
+      height: 6em;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 75%;} */
     .single-blog-post .post-content .post-title {
       font-size: 16px;
       margin-bottom: 8px;
@@ -708,7 +716,14 @@ div.container h1{
 
 div.verdicts p{
   font-size: 13px;
+  line-height: 1.5em;
+  height: 4.5em;
+  overflow: hidden;
+  /* white-space: nowrap; */
+  text-overflow: ellipsis;
+  width: 100%;
 }
+
 .verdicts {
   display: flex;
   justify-content: space-between;
@@ -716,6 +731,34 @@ div.verdicts p{
   margin: 0px auto 0px;
   padding-left: 15px;
 }
+@media only screen and (min-width: 1200px) and (max-width: 1499px) {
+  .verdicts {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1499px;
+    margin: 0px auto 0px;
+    padding-left: 15px;} }
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .verdicts {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1199px;
+    margin: 0px auto 0px;
+    padding-left: 15px;} }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .verdicts {
+    display: flex;
+    justify-content: space-between;
+    max-width: 991px;
+    margin: 0px auto 0px;
+    padding-left: 15px;} }
+@media only screen and (max-width: 767px) {
+  .verdicts {
+    display: flex;
+    justify-content: space-between;
+    max-width: 767px;
+    margin: 0px auto 0px;
+    padding-left: 15px;} }
 
 .post-picture{
   position: relative;

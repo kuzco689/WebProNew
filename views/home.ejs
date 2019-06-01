@@ -105,87 +105,52 @@
 	<!-- </div> -->
 <!-- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -->
 <section class="mag-posts-area d-flex flex-wrap limit">
-	<!-- Left side -->
-	<!-- <div class="featured-video-posts-slide owl-carousel"> -->
-
-		<!-- <div class="single--slide"> -->
-			<div class="post-sidebar-area left-sidebar mt-30 mb-30 bg-white box-shadow">
-				<div class="single-sidebar-widget p-30">
-		            <!-- Section Title -->
-		            <div class="section-heading" style="background-color: #f89460">
-		                <h5>Activities</h5>
-		            </div>
-
-		            <!-- Single Blog Post -->
-	<% club.forEach(function(club){ %>
-								<div class="single-blog-post d-flex">
-		                <div class="post-content">
-		                    <!-- <a href="single-post.html" class="post-title">Is we miles ready he might going</a>
-		                    <p>Luckily friends do ashamed to do suppose. Tried meant mr smile so. Exquisite behaviour as to middleton perfectly. Chicken no wishing waiting am. Say concerns dwelling graceful six humoured. Whether mr up savings talking an. Active mutual nor father mother exeter change six did all.</p> -->
-
-												<li class="box-list single-blog-post">
-													<!-- <div class="post-picture">
-												        <img src="img/bg-img/21.jpg" alt="">
-												    </div> -->
-													<div class="verdicts">
-														<p><a href="/clubregist/<%= club._id %>"><strong><%=club.title%> , <%=club.date%></strong></a><br/>
-															<%=club.body%> , <%=club.place%><br/>
-														<%=club.time%></p>
-													</div>
-													<!-- <div>
-														<% if(usertype != null){
-															if(usertype.usertype === '1') { %>
-														<a class="btn btn-info editbtn " id="sube"  href="/clubregist/<%= club._id %>/edit">Edit</a>
-														<% }
-												} %>
-
-													</div> -->
-												</li>
-
-										</div>
-		            </div>
-<% }) %>
-
-
-
-
-
-
-
-		        </div>
-
-	</div>
-    <!-- Right side -->
-    <div class="post-sidebar-area right-sidebar mt-30 mb-30 bg-white box-shadow">
-		<div class="single-sidebar-widget p-30">
-            <!-- Section Title -->
-            <div class="section-heading" style="background-color: #eab0a5">
-                <h5>News</h5>
-            </div>
-						<% blogs.forEach(function(blog){ %>
-            <!-- Single Blog Post -->
-            <div class="single-blog-post d-flex">
-                <!-- <div class="post-thumbnail">
-                    <img src="img/bg-img/4.jpg" alt="">
-                </div> -->
-                <div class="post-content">
-                    <!-- <a href="single-post.html" class="post-title">Good draw knew bred ham busy his hour</a>
-                    <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne.</p> -->
-
-										<li class="box-list single-blog-post">
-											<div class="verdicts">
-												<p><a href="/blogs/<%= blog._id %>"><strong><%=blog.university%> , <%=blog.country%></strong></a><br/>
-													<%=blog.levelofstudy%> , <%=blog.date%><br/>
-												<%=blog.body%></p>
-											</div>
-										</li>
-
-							  </div>
-            </div>
-						<% }) %>
-
-        </div>
+<!-- Left side -->
+<div class="post-sidebar-area left-sidebar mt-30 mb-30 bg-white box-shadow">
+	<div class="single-sidebar-widget p-30">
+    <!-- Section Title -->
+    <div class="section-heading" style="background-color: #f89460">
+        <h5>Activities</h5>
     </div>
+    <!-- Single Blog Post -->
+		<% club.forEach(function(club){ %>
+			<div class="single-blog-post d-flex">
+	        <div class="post-content">
+						<li class="box-list single-blog-post">
+							<div class="verdicts">
+								<p><a href="/clubregist/<%= club._id %>"><strong><%=club.title%> , <%=club.date%></strong></a><br/>
+									<%=club.body%> , <%=club.place%><br/>
+								<%=club.time%></p>
+							</div>
+						</li>
+					</div>
+	    </div>
+		<% }) %>
+  </div>
+</div>
+<!-- Right side -->
+<div class="post-sidebar-area right-sidebar mt-30 mb-30 bg-white box-shadow">
+<div class="single-sidebar-widget p-30">
+        <!-- Section Title -->
+        <div class="section-heading" style="background-color: #eab0a5">
+            <h5>News</h5>
+        </div>
+				<% blogs.forEach(function(blog){ %>
+        <!-- Single Blog Post -->
+        <div class="single-blog-post d-flex">
+            <div class="post-content">
+								<li class="box-list single-blog-post">
+									<div class="verdicts">
+										<p><a href="/blogs/<%= blog._id %>"><strong><%=blog.university%> , <%=blog.country%></strong></a><br/>
+											<%=blog.levelofstudy%> , <%=blog.date%><br/>
+										<%=blog.body%></p>
+									</div>
+								</li>
+					  </div>
+        </div>
+				<% }) %>
+    </div>
+</div>
 </section>
 </body>
 </html>
